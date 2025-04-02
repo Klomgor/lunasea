@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:lunasea/core.dart';
 import 'package:lunasea/database/database.dart';
-import 'package:lunasea/firebase/auth.dart';
-import 'package:lunasea/firebase/core.dart';
 import 'package:lunasea/modules/settings.dart';
 import 'package:lunasea/modules/settings/routes/system/widgets/backup_tile.dart';
-import 'package:lunasea/modules/settings/routes/system/widgets/build_details.dart';
 import 'package:lunasea/modules/settings/routes/system/widgets/restore_tile.dart';
 import 'package:lunasea/router/routes/settings.dart';
 import 'package:lunasea/system/cache/image/image_cache.dart';
@@ -42,8 +40,6 @@ class _State extends State<SystemRoute> with LunaScrollControllerMixin {
     return LunaListView(
       controller: scrollController,
       children: <Widget>[
-        const BuildDetails(),
-        LunaDivider(),
         const SettingsSystemBackupRestoreBackupTile(),
         const SettingsSystemBackupRestoreRestoreTile(),
         LunaDivider(),
@@ -97,7 +93,6 @@ class _State extends State<SystemRoute> with LunaScrollControllerMixin {
         bool result = await SettingsDialogs().clearConfiguration(context);
         if (result) {
           LunaDatabase().bootstrap();
-          if (LunaFirebase.isSupported) LunaFirebaseAuth().signOut();
           LunaState.reset(context);
           showLunaSuccessSnackBar(
             title: 'settings.ConfigurationCleared'.tr(),

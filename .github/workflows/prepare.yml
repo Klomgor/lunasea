@@ -24,12 +24,6 @@ on:
         description: "Build Version"
         value: ${{ jobs.build-details.outputs.build-version }}
 
-    secrets:
-      FIREBASE_TOKEN:
-        required: true
-      SENTRY_DSN:
-        required: true
-
 jobs:
   build-details:
     name: Build Details
@@ -123,7 +117,6 @@ jobs:
       - name: Setup Environment
         uses: JagandeepBrar/lunasea/.github/actions/prepare_for_build@master
         with:
-          firebase-token: ${{ secrets.FIREBASE_TOKEN }}
           platform: test
           skip-core: true
 
@@ -132,24 +125,19 @@ jobs:
           export FLAVOR=${{ needs.build-details.outputs.build-flavor }}
           export COMMIT=${{ github.sha }}
           export BUILD=${{ needs.build-details.outputs.build-number }}
-          export SENTRY_DSN=${{ secrets.SENTRY_DSN }}
           flutter packages pub run environment_config:generate
 
       - name: Generate Localization
         run: dart ${{github.workspace }}/scripts/generate_localization.dart
 
-      - name: Generate Changelog
-        run: dart ${{github.workspace }}/scripts/generate_changelog.dart ${{ needs.build-details.outputs.build-flavor }}
-
       - name: Generate Build Runner Files
         run: flutter packages pub run build_runner build
 
       - name: Upload Core Files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: core-files
           path: |
-            ${{ github.workspace }}/assets/changelog.json
             ${{ github.workspace }}/assets/localization
             ${{ github.workspace }}/lib/**/*.g.dart
             ${{ github.workspace }}/lib/system/environment.dart

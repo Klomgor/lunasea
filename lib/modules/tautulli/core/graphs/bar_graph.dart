@@ -1,5 +1,6 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fl_chart/fl_chart.dart';
 import 'package:lunasea/core.dart';
 import 'package:lunasea/extensions/duration/timestamp.dart';
 import 'package:lunasea/modules/tautulli.dart';
@@ -43,7 +44,7 @@ class TautulliBarGraphHelper {
       BarTouchData(
         enabled: true,
         touchTooltipData: BarTouchTooltipData(
-          tooltipBgColor:
+          getTooltipColor: (_) =>
               LunaTheme.isAMOLEDTheme ? Colors.black : LunaColours.primary,
           tooltipRoundedRadius: LunaUI.BORDER_RADIUS,
           tooltipPadding: const EdgeInsets.all(8.0),

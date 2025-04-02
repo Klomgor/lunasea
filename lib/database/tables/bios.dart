@@ -3,7 +3,6 @@ import 'package:lunasea/modules.dart';
 
 enum BIOSDatabase<T> with LunaTableMixin<T> {
   BOOT_MODULE<LunaModule>(LunaModule.DASHBOARD),
-  SENTRY_LOGGING<bool>(true),
   FIRST_BOOT<bool>(true);
 
   @override

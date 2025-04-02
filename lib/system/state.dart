@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
 import 'package:lunasea/modules/dashboard/core/state.dart';
 import 'package:lunasea/modules/lidarr/core/state.dart';
 import 'package:lunasea/modules/radarr/core/state.dart';
 import 'package:lunasea/modules/search/core/state.dart';
 import 'package:lunasea/modules/settings/core/state.dart';
 import 'package:lunasea/modules/sonarr/core/state.dart';
-import 'package:lunasea/modules/overseerr/core/state.dart';
 import 'package:lunasea/modules/sabnzbd/core/state.dart';
 import 'package:lunasea/modules/nzbget/core/state.dart';
 import 'package:lunasea/modules/tautulli/core/state.dart';
 import 'package:lunasea/modules.dart';
 import 'package:lunasea/router/router.dart';
-import 'package:provider/provider.dart';
 
 class LunaState {
   LunaState._();
@@ -36,7 +35,6 @@ class LunaState {
         ChangeNotifierProvider(create: (_) => SonarrState()),
         ChangeNotifierProvider(create: (_) => NZBGetState()),
         ChangeNotifierProvider(create: (_) => SABnzbdState()),
-        ChangeNotifierProvider(create: (_) => OverseerrState()),
         ChangeNotifierProvider(create: (_) => TautulliState()),
       ],
       child: child,

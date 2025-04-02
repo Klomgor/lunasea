@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+
 import 'package:lunasea/core.dart';
-import 'package:lunasea/database/tables/bios.dart';
 import 'package:lunasea/modules/settings.dart';
 import 'package:lunasea/router/routes/settings.dart';
 import 'package:lunasea/system/filesystem/filesystem.dart';
@@ -67,8 +67,6 @@ class _State extends State<SystemLogsRoute> with LunaScrollControllerMixin {
             return Container(height: 0.0);
           },
         ),
-        LunaDivider(),
-        _sentryLogging(),
       ],
     );
   }
@@ -77,20 +75,6 @@ class _State extends State<SystemLogsRoute> with LunaScrollControllerMixin {
     SettingsRoutes.SYSTEM_LOGS_DETAILS.go(params: {
       'type': type?.key ?? 'all',
     });
-  }
-
-  Widget _sentryLogging() {
-    const db = BIOSDatabase.SENTRY_LOGGING;
-    return db.listenableBuilder(
-      builder: (context, _) => LunaBlock(
-        title: 'settings.SentryLogging'.tr(),
-        body: [TextSpan(text: 'settings.SentryLoggingDescription'.tr())],
-        trailing: LunaSwitch(
-          value: db.read(),
-          onChanged: db.update,
-        ),
-      ),
-    );
   }
 
   Widget _clearLogs() {

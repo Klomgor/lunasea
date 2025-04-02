@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:lunasea/database/models/indexer.dart';
 import 'package:lunasea/modules.dart';
-import 'package:lunasea/modules/settings/routes/account/pages/password_reset.dart';
-import 'package:lunasea/modules/settings/routes/account/pages/settings.dart';
-import 'package:lunasea/modules/settings/routes/account/route.dart';
 import 'package:lunasea/modules/settings/routes/configuration/route.dart';
 import 'package:lunasea/modules/settings/routes/configuration_general/route.dart';
 import 'package:lunasea/modules/settings/routes/configuration_dashboard/pages/calendar_settings.dart';
@@ -21,9 +19,6 @@ import 'package:lunasea/modules/settings/routes/configuration_nzbget/pages/conne
 import 'package:lunasea/modules/settings/routes/configuration_nzbget/pages/default_pages.dart';
 import 'package:lunasea/modules/settings/routes/configuration_nzbget/pages/headers.dart';
 import 'package:lunasea/modules/settings/routes/configuration_nzbget/route.dart';
-import 'package:lunasea/modules/settings/routes/configuration_overseerr/pages/connection_details.dart';
-import 'package:lunasea/modules/settings/routes/configuration_overseerr/pages/headers.dart';
-import 'package:lunasea/modules/settings/routes/configuration_overseerr/route.dart';
 import 'package:lunasea/modules/settings/routes/configuration_quick_actions/route.dart';
 import 'package:lunasea/modules/settings/routes/configuration_radarr/pages/connection_details.dart';
 import 'package:lunasea/modules/settings/routes/configuration_radarr/pages/default_options.dart';
@@ -49,11 +44,7 @@ import 'package:lunasea/modules/settings/routes/configuration_tautulli/pages/def
 import 'package:lunasea/modules/settings/routes/configuration_tautulli/pages/headers.dart';
 import 'package:lunasea/modules/settings/routes/configuration_tautulli/route.dart';
 import 'package:lunasea/modules/settings/routes/configuration_wake_on_lan/route.dart';
-import 'package:lunasea/modules/settings/routes/donations/pages/thank_you.dart';
-import 'package:lunasea/modules/settings/routes/donations/route.dart';
-import 'package:lunasea/modules/settings/routes/notifications/route.dart';
 import 'package:lunasea/modules/settings/routes/profiles/route.dart';
-import 'package:lunasea/modules/settings/routes/resources/route.dart';
 import 'package:lunasea/modules/settings/routes/settings/route.dart';
 import 'package:lunasea/modules/settings/routes/system/route.dart';
 import 'package:lunasea/modules/settings/routes/system_logs/pages/log_details.dart';
@@ -64,9 +55,6 @@ import 'package:lunasea/vendor.dart';
 
 enum SettingsRoutes with LunaRoutesMixin {
   HOME('/settings'),
-  ACCOUNT('account'),
-  ACCOUNT_PASSWORD_RESET('password_reset'),
-  ACCOUNT_SETTINGS('settings'),
   CONFIGURATION('configuration'),
   CONFIGURATION_GENERAL('general'),
   CONFIGURATION_DASHBOARD('dashboard'),
@@ -84,9 +72,6 @@ enum SettingsRoutes with LunaRoutesMixin {
   CONFIGURATION_NZBGET_CONNECTION_DETAILS('connection_details'),
   CONFIGURATION_NZBGET_CONNECTION_DETAILS_HEADERS('headers'),
   CONFIGURATION_NZBGET_DEFAULT_PAGES('default_pages'),
-  CONFIGURATION_OVERSEERR('overseerr'),
-  CONFIGURATION_OVERSEERR_CONNECTION_DETAILS('connection_details'),
-  CONFIGURATION_OVERSEERR_CONNECTION_DETAILS_HEADERS('headers'),
   CONFIGURATION_QUICK_ACTIONS('quick_actions'),
   CONFIGURATION_RADARR('radarr'),
   CONFIGURATION_RADARR_CONNECTION_DETAILS('connection_details'),
@@ -112,11 +97,7 @@ enum SettingsRoutes with LunaRoutesMixin {
   CONFIGURATION_TAUTULLI_CONNECTION_DETAILS_HEADERS('headers'),
   CONFIGURATION_TAUTULLI_DEFAULT_PAGES('default_pages'),
   CONFIGURATION_WAKE_ON_LAN('wake_on_lan'),
-  DONATIONS('donations'),
-  DONATIONS_THANK_YOU('thank_you'),
-  NOTIFICATIONS('notifications'),
   PROFILES('profiles'),
-  RESOURCES('resources'),
   SYSTEM('system'),
   SYSTEM_LOGS('logs'),
   SYSTEM_LOGS_DETAILS('view/:type');
@@ -137,12 +118,6 @@ enum SettingsRoutes with LunaRoutesMixin {
     switch (this) {
       case SettingsRoutes.HOME:
         return route(widget: const SettingsRoute());
-      case SettingsRoutes.ACCOUNT:
-        return route(widget: const AccountRoute());
-      case SettingsRoutes.ACCOUNT_PASSWORD_RESET:
-        return route(widget: const AccountPasswordResetRoute());
-      case SettingsRoutes.ACCOUNT_SETTINGS:
-        return route(widget: const AccountSettingsRoute());
       case SettingsRoutes.CONFIGURATION:
         return route(widget: const ConfigurationRoute());
       case SettingsRoutes.CONFIGURATION_GENERAL:
@@ -184,16 +159,6 @@ enum SettingsRoutes with LunaRoutesMixin {
         );
       case SettingsRoutes.CONFIGURATION_NZBGET_DEFAULT_PAGES:
         return route(widget: const ConfigurationNZBGetDefaultPagesRoute());
-      case SettingsRoutes.CONFIGURATION_OVERSEERR:
-        return route(widget: const ConfigurationOverseerrRoute());
-      case SettingsRoutes.CONFIGURATION_OVERSEERR_CONNECTION_DETAILS:
-        return route(
-          widget: const ConfigurationOverseerrConnectionDetailsRoute(),
-        );
-      case SettingsRoutes.CONFIGURATION_OVERSEERR_CONNECTION_DETAILS_HEADERS:
-        return route(
-          widget: const ConfigurationOverseerrConnectionDetailsHeadersRoute(),
-        );
       case SettingsRoutes.CONFIGURATION_QUICK_ACTIONS:
         return route(widget: const ConfigurationQuickActionsRoute());
       case SettingsRoutes.CONFIGURATION_RADARR:
@@ -265,16 +230,8 @@ enum SettingsRoutes with LunaRoutesMixin {
         return route(widget: const ConfigurationTautulliDefaultPagesRoute());
       case SettingsRoutes.CONFIGURATION_WAKE_ON_LAN:
         return route(widget: const ConfigurationWakeOnLANRoute());
-      case SettingsRoutes.DONATIONS:
-        return route(widget: const DonationsRoute());
-      case SettingsRoutes.DONATIONS_THANK_YOU:
-        return route(widget: const DonationsThankYouRoute());
-      case SettingsRoutes.NOTIFICATIONS:
-        return route(widget: const NotificationsRoute());
       case SettingsRoutes.PROFILES:
         return route(widget: const ProfilesRoute());
-      case SettingsRoutes.RESOURCES:
-        return route(widget: const ResourcesRoute());
       case SettingsRoutes.SYSTEM:
         return route(widget: const SystemRoute());
       case SettingsRoutes.SYSTEM_LOGS:
@@ -292,18 +249,9 @@ enum SettingsRoutes with LunaRoutesMixin {
     switch (this) {
       case SettingsRoutes.HOME:
         return [
-          SettingsRoutes.ACCOUNT.routes,
           SettingsRoutes.CONFIGURATION.routes,
-          SettingsRoutes.DONATIONS.routes,
-          SettingsRoutes.NOTIFICATIONS.routes,
           SettingsRoutes.PROFILES.routes,
-          SettingsRoutes.RESOURCES.routes,
           SettingsRoutes.SYSTEM.routes,
-        ];
-      case SettingsRoutes.ACCOUNT:
-        return [
-          SettingsRoutes.ACCOUNT_PASSWORD_RESET.routes,
-          SettingsRoutes.ACCOUNT_SETTINGS.routes,
         ];
       case SettingsRoutes.CONFIGURATION:
         return [
@@ -313,7 +261,6 @@ enum SettingsRoutes with LunaRoutesMixin {
           SettingsRoutes.CONFIGURATION_EXTERNAL_MODULES.routes,
           SettingsRoutes.CONFIGURATION_LIDARR.routes,
           SettingsRoutes.CONFIGURATION_NZBGET.routes,
-          SettingsRoutes.CONFIGURATION_OVERSEERR.routes,
           SettingsRoutes.CONFIGURATION_QUICK_ACTIONS.routes,
           SettingsRoutes.CONFIGURATION_RADARR.routes,
           SettingsRoutes.CONFIGURATION_SABNZBD.routes,
@@ -344,15 +291,6 @@ enum SettingsRoutes with LunaRoutesMixin {
       case SettingsRoutes.CONFIGURATION_NZBGET_CONNECTION_DETAILS:
         return [
           SettingsRoutes.CONFIGURATION_NZBGET_CONNECTION_DETAILS_HEADERS.routes,
-        ];
-      case SettingsRoutes.CONFIGURATION_OVERSEERR:
-        return [
-          SettingsRoutes.CONFIGURATION_OVERSEERR_CONNECTION_DETAILS.routes,
-        ];
-      case SettingsRoutes.CONFIGURATION_OVERSEERR_CONNECTION_DETAILS:
-        return [
-          SettingsRoutes
-              .CONFIGURATION_OVERSEERR_CONNECTION_DETAILS_HEADERS.routes,
         ];
       case SettingsRoutes.CONFIGURATION_RADARR:
         return [
@@ -406,10 +344,6 @@ enum SettingsRoutes with LunaRoutesMixin {
         return [
           SettingsRoutes
               .CONFIGURATION_TAUTULLI_CONNECTION_DETAILS_HEADERS.routes,
-        ];
-      case SettingsRoutes.DONATIONS:
-        return [
-          SettingsRoutes.DONATIONS_THANK_YOU.routes,
         ];
       case SettingsRoutes.CONFIGURATION_EXTERNAL_MODULES:
         return [

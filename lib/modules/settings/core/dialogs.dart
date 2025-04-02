@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:wake_on_lan/wake_on_lan.dart';
 import 'package:lunasea/database/tables/lunasea.dart';
-import 'package:lunasea/firebase/types.dart';
 import 'package:lunasea/modules.dart';
 import 'package:lunasea/modules/dashboard/core/adapters/calendar_starting_day.dart';
 import 'package:lunasea/modules/dashboard/core/adapters/calendar_starting_size.dart';
 import 'package:lunasea/modules/dashboard/core/adapters/calendar_starting_type.dart';
 import 'package:lunasea/modules/settings/core/types/header.dart';
-import 'package:lunasea/system/localization.dart';
 import 'package:lunasea/system/state.dart';
 import 'package:lunasea/utils/validator.dart';
 import 'package:lunasea/vendor.dart';
@@ -71,40 +70,6 @@ class SettingsDialogs {
       contentPadding: LunaDialog.textDialogContentPadding(),
     );
     return _flag;
-  }
-
-  Future<Tuple2<bool, LunaFirebaseBackupDocument?>> getBackupFromCloud(
-    BuildContext context,
-    List<LunaFirebaseBackupDocument> backups,
-  ) async {
-    bool _flag = false;
-    LunaFirebaseBackupDocument? _document;
-
-    void _setValues(bool flag, LunaFirebaseBackupDocument document) {
-      _flag = flag;
-      _document = document;
-      Navigator.of(context).pop();
-    }
-
-    await LunaDialog.dialog(
-      context: context,
-      title: 'settings.BackupList'.tr(),
-      content: backups.isNotEmpty
-          ? List.generate(
-              backups.length,
-              (index) => LunaDialog.tile(
-                icon: Icons.file_copy_rounded,
-                iconColor: LunaColours().byListIndex(index),
-                text: backups[index].title.toString(),
-                onTap: () => _setValues(true, backups[index]),
-              ),
-            )
-          : [LunaDialog.textContent(text: 'settings.NoBackupsFound'.tr())],
-      contentPadding: backups.isNotEmpty
-          ? LunaDialog.listDialogContentPadding()
-          : LunaDialog.textDialogContentPadding(),
-    );
-    return Tuple2(_flag, _document);
   }
 
   Future<Tuple2<bool, String>> editHost(
@@ -862,36 +827,6 @@ class SettingsDialogs {
     return Tuple2(_flag, _profile);
   }
 
-  Future<Tuple2<bool, LunaLanguage?>> changeLanguage(
-    BuildContext context,
-  ) async {
-    List<LunaLanguage> languages = LunaLocalization().supportedLanguages();
-    bool _flag = false;
-    LunaLanguage? _language;
-
-    void _setValues(bool flag, LunaLanguage language) {
-      _flag = flag;
-      _language = language;
-      Navigator.of(context).pop();
-    }
-
-    await LunaDialog.dialog(
-      context: context,
-      title: 'settings.Language'.tr(),
-      content: List.generate(
-        languages.length,
-        (index) => LunaDialog.tile(
-          icon: Icons.language_rounded,
-          iconColor: LunaColours().byListIndex(index),
-          text: languages[index].name,
-          onTap: () => _setValues(true, languages[index]),
-        ),
-      ),
-      contentPadding: LunaDialog.listDialogContentPadding(),
-    );
-    return Tuple2(_flag, _language);
-  }
-
   Future<Tuple2<bool, CalendarStartingDay?>> editCalendarStartingDay(
     BuildContext context,
   ) async {
@@ -968,8 +903,6 @@ class SettingsDialogs {
           return CalendarStartingType.SCHEDULE.icon;
         case CalendarStartingType.SCHEDULE:
           return CalendarStartingType.CALENDAR.icon;
-        default:
-          return Icons.help_rounded;
       }
     }
 

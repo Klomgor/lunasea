@@ -15,8 +15,3 @@ environment_config:
       type: String
       default: edge
       env_var: FLAVOR
-    sentryDSN:
-      type: String
-      default: ""
-      env_var: SENTRY_DSN
-

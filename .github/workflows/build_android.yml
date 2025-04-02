@@ -8,8 +8,6 @@ on:
         type: string
 
     secrets:
-      FIREBASE_TOKEN:
-        required: true
       KEY_JKS:
         required: true
       KEY_PROPERTIES:
@@ -23,7 +21,6 @@ jobs:
       - name: Setup Environment
         uses: JagandeepBrar/lunasea/.github/actions/prepare_for_build@master
         with:
-          firebase-token: ${{ secrets.FIREBASE_TOKEN }}
           platform: android
           android-key-jks: ${{ secrets.KEY_JKS }}
           android-key-properties: ${{ secrets.KEY_PROPERTIES }}
@@ -33,7 +30,7 @@ jobs:
         run: bundle exec fastlane build_aab build_number:${{ inputs.build-number }}
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-playstore-package
           path: ${{ github.workspace }}/output
@@ -45,7 +42,6 @@ jobs:
       - name: Setup Environment
         uses: JagandeepBrar/lunasea/.github/actions/prepare_for_build@master
         with:
-          firebase-token: ${{ secrets.FIREBASE_TOKEN }}
           platform: android
           android-key-jks: ${{ secrets.KEY_JKS }}
           android-key-properties: ${{ secrets.KEY_PROPERTIES }}
@@ -55,7 +51,7 @@ jobs:
         run: bundle exec fastlane build_apk build_number:${{ inputs.build-number }}
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-app-package
           path: ${{ github.workspace }}/output

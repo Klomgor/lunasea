@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:lunasea/core.dart';
 import 'package:lunasea/database/models/log.dart';
-import 'package:lunasea/system/sentry.dart';
 import 'package:lunasea/types/exception.dart';
 import 'package:lunasea/types/log_type.dart';
 
@@ -61,10 +61,6 @@ class LunaLogger {
     }
 
     if (error is! NetworkImageLoadException) {
-      if (error is! DioException) {
-        LunaSentry().captureException(error, stackTrace);
-      }
-
       LunaLog log = LunaLog.withError(
         type: LunaLogType.ERROR,
         message: message,
@@ -82,10 +78,6 @@ class LunaLogger {
     }
 
     if (error is! NetworkImageLoadException) {
-      if (error is! DioException) {
-        LunaSentry().captureException(error, stackTrace);
-      }
-
       LunaLog log = LunaLog.withError(
         type: LunaLogType.CRITICAL,
         message: error?.toString() ?? LunaUI.TEXT_EMDASH,

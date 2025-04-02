@@ -14,8 +14,6 @@ on:
         required: true
       APPLE_TEAM_ID:
         required: true
-      FIREBASE_TOKEN:
-        required: true
       IOS_CODESIGNING_IDENTITY:
         required: true
       MATCH_KEYCHAIN_NAME:
@@ -35,7 +33,6 @@ jobs:
       - name: Setup Environment
         uses: JagandeepBrar/lunasea/.github/actions/prepare_for_build@master
         with:
-          firebase-token: ${{ secrets.FIREBASE_TOKEN }}
           platform: ios
           match-ssh-private-key: ${{ secrets.MATCH_SSH_PRIVATE_KEY }}
 
@@ -52,7 +49,7 @@ jobs:
         run: bundle exec fastlane build_appstore build_number:${{ inputs.build-number }}
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ios-appstore-package
           path: ${{ github.workspace }}/output

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:lunasea/database/box.dart';
 import 'package:lunasea/database/models/deprecated.dart';
 import 'package:lunasea/database/tables/bios.dart';
@@ -6,7 +7,6 @@ import 'package:lunasea/database/tables/dashboard.dart';
 import 'package:lunasea/database/tables/lidarr.dart';
 import 'package:lunasea/database/tables/lunasea.dart';
 import 'package:lunasea/database/tables/nzbget.dart';
-import 'package:lunasea/database/tables/overseerr.dart';
 import 'package:lunasea/database/tables/radarr.dart';
 import 'package:lunasea/database/tables/sabnzbd.dart';
 import 'package:lunasea/database/tables/search.dart';
@@ -20,7 +20,6 @@ enum LunaTable<T extends LunaTableMixin> {
   lidarr<LidarrDatabase>('lidarr', items: LidarrDatabase.values),
   lunasea<LunaSeaDatabase>('lunasea', items: LunaSeaDatabase.values),
   nzbget<NZBGetDatabase>('nzbget', items: NZBGetDatabase.values),
-  overseerr<OverseerrDatabase>('overseerr', items: OverseerrDatabase.values),
   radarr<RadarrDatabase>('radarr', items: RadarrDatabase.values),
   sabnzbd<SABnzbdDatabase>('sabnzbd', items: SABnzbdDatabase.values),
   search<SearchDatabase>('search', items: SearchDatabase.values),

@@ -6,12 +6,6 @@
         android:label="LunaSea"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="asset_statements" android:resource="@string/asset_statements" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_notification" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/ic_notification_background" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

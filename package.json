@@ -1,7 +1,7 @@
 {
   "name": "lunasea",
   "description": "Self-Hosted Controller",
-  "version": "10.2.6",
+  "version": "11.0.0",
   "private": true,
   "scripts": {
     "build:android": "flutter clean && flutter build apk --release",
@@ -9,7 +9,7 @@
     "build:linux": "flutter clean && flutter build linux --release",
     "build:macos": "flutter clean && flutter build macos --release",
     "build:windows": "flutter clean && flutter build windows --release",
-    "build:web": "flutter clean && flutter build web --web-renderer canvaskit --release",
+    "build:web": "flutter clean && flutter build web --release",
     "cocoapods:clear_cache": "rm -rf ~/Library/Caches/CocoaPods && rm -rf ~/Library/Developer/Xcode/DerivedData/*",
     "cocoapods:nuke": "npm run cocoapods:nuke:ios && npm run cocoapods:nuke:macos",
     "cocoapods:nuke:ios": "cd ios && rm -rf Pods && rm -rf Podfile.lock && pod deintegrate && pod setup && pod install --repo-update",
@@ -25,9 +25,6 @@
     "generate:build_runner:watch": "dart run build_runner watch --delete-conflicting-outputs",
     "generate:environment": "dart run environment_config:generate",
     "generate:localization": "dart ./scripts/generate_localization.dart",
-    "git:ignore": "npm run git:ignore:firebase && npm run git:ignore:changelog",
-    "git:ignore:firebase": "git update-index --skip-worktree lib/firebase/options.dart",
-    "git:ignore:changelog": "git update-index --skip-worktree assets/changelog.json",
     "prepare": "husky install && npm run git:ignore && flutter pub get",
     "prepare:keychain": "npm run prepare:keychain:ios && npm run prepare:keychain:macos",
     "prepare:keychain:ios": "cd ios && bundle exec fastlane keychain_create && bundle exec fastlane keychain_setup",

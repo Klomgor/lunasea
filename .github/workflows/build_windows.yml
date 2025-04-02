@@ -22,10 +22,10 @@ jobs:
         run: npm run build:windows
 
       - name: Prepare Artifact
-        run: Compress-Archive -path ${{ github.workspace }}\build\windows\runner\Release\* ${{github.workspace}}\output\lunasea-windows-amd64.zip
+        run: Compress-Archive -path ${{ github.workspace }}\build\windows\x64\runner\Release\* ${{github.workspace}}\output\lunasea-windows-amd64.zip
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows-app-package
           path: ${{ github.workspace }}/output
@@ -48,7 +48,7 @@ jobs:
           --output-path=${{ github.workspace }}/output
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows-msix-installer
           path: ${{ github.workspace }}/output

@@ -23,8 +23,6 @@ on:
         required: true
       APPLE_TEAM_ID:
         required: true
-      FIREBASE_TOKEN:
-        required: true
       MACOS_INSTALLER_CERT_APP_STORE:
         required: true
       MACOS_INSTALLER_CERT_DIRECT:
@@ -46,7 +44,6 @@ jobs:
       - name: Setup Environment
         uses: JagandeepBrar/lunasea/.github/actions/prepare_for_build@master
         with:
-          firebase-token: ${{ secrets.FIREBASE_TOKEN }}
           platform: macos
           appstore-connect-key: ${{ secrets.APPLE_STORE_CONNECT_KEY }}
           match-ssh-private-key: ${{ secrets.MATCH_SSH_PRIVATE_KEY }}
@@ -67,7 +64,7 @@ jobs:
         run: bundle exec fastlane build_app_store build_number:${{ inputs.build-number }}
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: macos-appstore-package
           path: ${{ github.workspace }}/output
@@ -79,7 +76,6 @@ jobs:
       - name: Setup Environment
         uses: JagandeepBrar/lunasea/.github/actions/prepare_for_build@master
         with:
-          firebase-token: ${{ secrets.FIREBASE_TOKEN }}
           platform: macos
           appstore-connect-key: ${{ secrets.APPLE_STORE_CONNECT_KEY }}
           match-ssh-private-key: ${{ secrets.MATCH_SSH_PRIVATE_KEY }}
@@ -100,7 +96,7 @@ jobs:
         run: bundle exec fastlane build_app_package build_number:${{ inputs.build-number }}
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: macos-app-package
           path: ${{ github.workspace }}/output
@@ -112,7 +108,6 @@ jobs:
       - name: Setup Environment
         uses: JagandeepBrar/lunasea/.github/actions/prepare_for_build@master
         with:
-          firebase-token: ${{ secrets.FIREBASE_TOKEN }}
           platform: macos
           appstore-connect-key: ${{ secrets.APPLE_STORE_CONNECT_KEY }}
           match-ssh-private-key: ${{ secrets.MATCH_SSH_PRIVATE_KEY }}
@@ -138,7 +133,7 @@ jobs:
         run: bundle exec fastlane build_disk_image build_number:${{ inputs.build-number }} build_version:${{ inputs.build-version }}
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: macos-disk-image
           path: ${{ github.workspace }}/output

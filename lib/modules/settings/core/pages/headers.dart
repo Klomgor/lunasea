@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+
 import 'package:lunasea/core.dart';
-import 'package:lunasea/modules/overseerr.dart';
 import 'package:lunasea/modules/radarr.dart';
 import 'package:lunasea/modules/sonarr.dart';
 import 'package:lunasea/modules/settings.dart';
@@ -116,7 +116,7 @@ class _State extends State<SettingsHeaderRoute> with LunaScrollControllerMixin {
       case LunaModule.WAKE_ON_LAN:
         throw Exception('Wake on LAN does not have a headers page');
       case LunaModule.OVERSEERR:
-        return LunaProfile.current.overseerrHeaders;
+        throw Exception('Overseerr does not have a headers page');
       case LunaModule.TAUTULLI:
         return LunaProfile.current.tautulliHeaders;
     }
@@ -147,7 +147,7 @@ class _State extends State<SettingsHeaderRoute> with LunaScrollControllerMixin {
       case LunaModule.TAUTULLI:
         return context.read<TautulliState>().reset();
       case LunaModule.OVERSEERR:
-        return context.read<OverseerrState>().reset();
+        return;
     }
   }
 }

@@ -1,13 +1,11 @@
 import 'package:lunasea/database/tables/lunasea.dart';
 import 'package:lunasea/extensions/string/string.dart';
-import 'package:lunasea/system/localization.dart';
 import 'package:lunasea/vendor.dart';
 import 'package:lunasea/widgets/ui.dart';
 
 extension DateTimeExtension on DateTime {
   String _formatted(String format) {
-    final locale = LunaLanguage.current().languageTag;
-    return DateFormat(format, locale).format(this.toLocal());
+    return DateFormat(format, 'en').format(this.toLocal());
   }
 
   DateTime floor() {

@@ -1,18 +1,14 @@
-import 'package:device_preview/device_preview.dart';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:device_preview/device_preview.dart';
 import 'package:lunasea/core.dart';
 import 'package:lunasea/database/database.dart';
-import 'package:lunasea/firebase/core.dart';
 import 'package:lunasea/router/router.dart';
 import 'package:lunasea/system/cache/image/image_cache.dart';
 import 'package:lunasea/system/cache/memory/memory_store.dart';
-import 'package:lunasea/system/in_app_purchase/in_app_purchase.dart';
-import 'package:lunasea/system/localization.dart';
 import 'package:lunasea/system/network/network.dart';
 import 'package:lunasea/system/recovery_mode/main.dart';
-import 'package:lunasea/system/sentry.dart';
 import 'package:lunasea/system/window_manager/window_manager.dart';
 import 'package:lunasea/system/platform.dart';
 
@@ -38,24 +34,20 @@ Future<void> main() async {
 /// Bootstrap the core
 ///
 Future<void> bootstrap() async {
-  await LunaSentry().initialize();
   await LunaDatabase().initialize();
   LunaLogger().initialize();
-  if (LunaFirebase.isSupported) await LunaFirebase().initialize();
   LunaTheme().initialize();
   if (LunaWindowManager.isSupported) await LunaWindowManager().initialize();
   if (LunaNetwork.isSupported) LunaNetwork().initialize();
   if (LunaImageCache.isSupported) LunaImageCache().initialize();
   LunaRouter().initialize();
-  if (LunaInAppPurchase.isSupported) LunaInAppPurchase().initialize();
-  await LunaLocalization().initialize();
   await LunaMemoryStore().initialize();
 }
 
 class LunaBIOS extends StatelessWidget {
   const LunaBIOS({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +58,10 @@ class LunaBIOS extends StatelessWidget {
       child: DevicePreview(
         enabled: kDebugMode && LunaPlatform.isDesktop,
         builder: (context) => EasyLocalization(
-          supportedLocales: LunaLocalization().supportedLocales(),
-          path: LunaLocalization.fileDirectory,
-          fallbackLocale: LunaLocalization.fallbackLocale,
-          startLocale: LunaLocalization.fallbackLocale,
+          supportedLocales: [Locale('en')],
+          path: 'assets/localization',
+          fallbackLocale: Locale('en'),
+          startLocale: Locale('en'),
           useFallbackTranslations: true,
           child: LunaBox.lunasea.listenableBuilder(
             selectItems: [

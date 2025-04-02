@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:lunasea/modules.dart';
 import 'package:lunasea/router/router.dart';
 import 'package:lunasea/router/routes/bios.dart';
@@ -6,7 +7,6 @@ import 'package:lunasea/router/routes/dashboard.dart';
 import 'package:lunasea/router/routes/external_modules.dart';
 import 'package:lunasea/router/routes/lidarr.dart';
 import 'package:lunasea/router/routes/nzbget.dart';
-import 'package:lunasea/router/routes/overseerr.dart';
 import 'package:lunasea/router/routes/radarr.dart';
 import 'package:lunasea/router/routes/sabnzbd.dart';
 import 'package:lunasea/router/routes/search.dart';
@@ -22,7 +22,6 @@ enum LunaRoutes {
   externalModules('external_modules', root: ExternalModulesRoutes.HOME),
   lidarr('lidarr', root: LidarrRoutes.HOME),
   nzbget('nzbget', root: NZBGetRoutes.HOME),
-  overseerr('overseerr', root: OverseerrRoutes.HOME),
   radarr('radarr', root: RadarrRoutes.HOME),
   sabnzbd('sabnzbd', root: SABnzbdRoutes.HOME),
   search('search', root: SearchRoutes.HOME),

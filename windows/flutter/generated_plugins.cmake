@@ -3,9 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  firebase_core
-  screen_retriever
-  sentry_flutter
+  screen_retriever_windows
   share_plus
   url_launcher_windows
   window_manager

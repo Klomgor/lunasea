@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:lunasea/core.dart';
 import 'package:lunasea/database/tables/bios.dart';
 import 'package:lunasea/modules/settings.dart';
-import 'package:lunasea/system/localization.dart';
 import 'package:lunasea/system/network/network.dart';
 import 'package:lunasea/system/platform.dart';
 
@@ -60,7 +60,6 @@ class _State extends State<ConfigurationGeneralRoute>
   List<Widget> _localization() {
     return [
       LunaHeader(text: 'settings.Localization'.tr()),
-      _language(),
       _use24HourTime(),
     ];
   }
@@ -182,19 +181,6 @@ class _State extends State<ConfigurationGeneralRoute>
           },
         ),
       ),
-    );
-  }
-
-  Widget _language() {
-    String? _language = LunaLanguage.fromLocale(context.locale)?.name;
-    return LunaBlock(
-      title: 'settings.Language'.tr(),
-      body: [TextSpan(text: _language ?? LunaUI.TEXT_EMDASH)],
-      trailing: const LunaIconButton(icon: Icons.language_rounded),
-      onTap: () async {
-        final result = await SettingsDialogs().changeLanguage(context);
-        if (result.item1) result.item2!.use();
-      },
     );
   }
 

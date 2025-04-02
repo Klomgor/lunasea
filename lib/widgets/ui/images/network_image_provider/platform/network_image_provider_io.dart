@@ -1,5 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:lunasea/system/cache/image/image_cache.dart';
 
 // ignore: always_use_package_imports
@@ -34,7 +35,7 @@ class IO implements LunaNetworkImageProvider {
       url,
       headers: headers,
       cacheManager: LunaImageCache().instance,
-      errorListener: () {},
+      errorListener: (_) {},
     );
   }
 

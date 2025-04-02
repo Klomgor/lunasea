@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+
 import 'package:lunasea/system/logger.dart';
-import 'package:lunasea/system/sentry.dart';
 import 'package:lunasea/widgets/pages/error_route.dart';
 import 'package:lunasea/router/routes.dart';
 import 'package:lunasea/vendor.dart';
@@ -14,7 +14,6 @@ class LunaRouter {
       navigatorKey: navigator,
       errorBuilder: (_, state) => ErrorRoutePage(exception: state.error),
       initialLocation: LunaRoutes.initialLocation,
-      observers: [LunaSentry().navigatorObserver],
       routes: LunaRoutes.values.map((r) => r.root.routes).toList(),
     );
   }

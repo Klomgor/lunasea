@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:lunasea/core.dart';
 
 class LunaTheme {
@@ -20,6 +21,7 @@ class LunaTheme {
   /// Midnight theme (Default)
   ThemeData _midnightTheme() {
     return ThemeData(
+      useMaterial3: false,
       brightness: Brightness.dark,
       canvasColor: LunaColours.primary,
       primaryColor: LunaColours.secondary,
@@ -27,7 +29,9 @@ class LunaTheme {
       cardColor: LunaColours.secondary,
       hoverColor: LunaColours.accent.withOpacity(LunaUI.OPACITY_SPLASH / 2),
       splashColor: LunaColours.accent.withOpacity(LunaUI.OPACITY_SPLASH),
-      dialogBackgroundColor: LunaColours.secondary,
+      dialogTheme: DialogThemeData(
+        backgroundColor: LunaColours.secondary,
+      ),
       iconTheme: const IconThemeData(
         color: Colors.white,
       ),
@@ -52,6 +56,7 @@ class LunaTheme {
   /// AMOLED/Pure black theme
   ThemeData _pureBlackTheme() {
     return ThemeData(
+      useMaterial3: false,
       brightness: Brightness.dark,
       canvasColor: Colors.black,
       primaryColor: Colors.black,
@@ -59,7 +64,9 @@ class LunaTheme {
       cardColor: Colors.black,
       hoverColor: LunaColours.accent.withOpacity(LunaUI.OPACITY_SPLASH / 2),
       splashColor: LunaColours.accent.withOpacity(LunaUI.OPACITY_SPLASH),
-      dialogBackgroundColor: Colors.black,
+      dialogTheme: DialogThemeData(
+        backgroundColor: Colors.black,
+      ),
       iconTheme: const IconThemeData(
         color: Colors.white,
       ),

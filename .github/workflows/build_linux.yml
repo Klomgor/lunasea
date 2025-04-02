@@ -27,7 +27,7 @@ jobs:
         run: dart ${{github.workspace }}/scripts/generate_debian.dart "${{ inputs.build-version }}+${{ inputs.build-number }}"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-debian
           path: ${{ github.workspace }}/output
@@ -48,7 +48,7 @@ jobs:
         run: tar czf output/lunasea-linux-amd64.tar.gz -C build/linux/x64/release/bundle/ .
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-tarball
           path: ${{ github.workspace }}/output
@@ -70,7 +70,7 @@ jobs:
         run: mv ${{ steps.build.outputs.snap }} ${{ github.workspace }}/output/lunasea-linux-amd64.snap
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-snapcraft
           path: ${{ github.workspace }}/output

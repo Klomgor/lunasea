@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
+
+import 'package:quick_actions/quick_actions.dart';
 import 'package:lunasea/core.dart';
 import 'package:lunasea/extensions/string/links.dart';
 import 'package:lunasea/router/router.dart';
 import 'package:lunasea/router/routes.dart';
 import 'package:lunasea/router/routes/settings.dart';
-import 'package:quick_actions/quick_actions.dart';
-
 import 'package:lunasea/modules/search.dart';
 import 'package:lunasea/modules/settings.dart';
-
 import 'package:lunasea/modules/lidarr.dart';
 import 'package:lunasea/modules/radarr.dart';
 import 'package:lunasea/modules/sonarr.dart';
-import 'package:lunasea/modules/overseerr.dart';
 import 'package:lunasea/modules/sabnzbd.dart';
 import 'package:lunasea/modules/nzbget.dart';
 import 'package:lunasea/modules/tautulli.dart';
-
 import 'package:lunasea/modules/dashboard/core/state.dart';
 import 'package:lunasea/api/wake_on_lan/wake_on_lan.dart';
-import 'package:lunasea/system/flavor.dart';
 
 part 'modules.g.dart';
 
@@ -109,7 +105,7 @@ extension LunaModuleEnablementExtension on LunaModule {
   bool get featureFlag {
     switch (this) {
       case LunaModule.OVERSEERR:
-        return LunaFlavor.EDGE.isRunningFlavor();
+        return false;
       case LunaModule.WAKE_ON_LAN:
         return LunaWakeOnLAN.isSupported;
       default:
@@ -374,7 +370,7 @@ extension LunaModuleRoutingExtension on LunaModule {
       case LunaModule.TAUTULLI:
         return LunaRoutes.tautulli.root.path;
       case LunaModule.OVERSEERR:
-        return LunaRoutes.overseerr.root.path;
+        return null;
       case LunaModule.WAKE_ON_LAN:
         return null;
       case LunaModule.EXTERNAL_MODULES:
@@ -391,7 +387,7 @@ extension LunaModuleRoutingExtension on LunaModule {
       case LunaModule.NZBGET:
         return SettingsRoutes.CONFIGURATION_NZBGET;
       case LunaModule.OVERSEERR:
-        return SettingsRoutes.CONFIGURATION_OVERSEERR;
+        return null;
       case LunaModule.RADARR:
         return SettingsRoutes.CONFIGURATION_RADARR;
       case LunaModule.SABNZBD:
@@ -461,8 +457,6 @@ extension LunaModuleWebhookExtension on LunaModule {
         return RadarrWebhooks().handle(data);
       case LunaModule.SONARR:
         return SonarrWebhooks().handle(data);
-      case LunaModule.OVERSEERR:
-        return OverseerrWebhooks().handle(data);
       case LunaModule.TAUTULLI:
         return TautulliWebhooks().handle(data);
       default:
@@ -500,7 +494,7 @@ extension LunaModuleExtension on LunaModule {
       case LunaModule.SABNZBD:
         return context.read<SABnzbdState>();
       case LunaModule.OVERSEERR:
-        return context.read<OverseerrState>();
+        return null;
       case LunaModule.TAUTULLI:
         return context.read<TautulliState>();
       case LunaModule.EXTERNAL_MODULES:
